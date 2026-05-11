@@ -1,0 +1,7 @@
+{
+  "CFN_MGMT_URL": "http://nispatil-m-qlpj.local:9000",
+  "CFN_NODE_URL": "http://nispatil-m-qlpj.local:9002",
+  "WORKSPACE_ID": "f968acc3-640b-4bb3-95ad-7d2a3a72a399",
+  "MAS_ID": "d182dca6-7197-479d-8f7e-965051258056",
+  "AGENT_ID": "agent-1"
+}

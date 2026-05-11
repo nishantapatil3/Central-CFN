@@ -1,0 +1,12 @@
+{
+  "cfn_node_url": "http://localhost:9002",
+  "workspace_id": "your-workspace-uuid-here",
+  "mas_id": "your-mas-uuid-here",
+  "agent_id": "claude-code",
+  "enabled": false,
+  "query_timeout": 60,
+  "write_timeout": 30,
+  "min_query_length": 10,
+  "max_text_bytes": 8192,
+  "max_tool_bytes": 4096
+}

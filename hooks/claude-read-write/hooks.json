@@ -1,0 +1,27 @@
+{
+  "description": "CFN (Central Fusion Node) Integration - Bidirectional knowledge graph sync",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/hooks/cfn-query.py",
+            "timeout": 60
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/hooks/cfn-write.py",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

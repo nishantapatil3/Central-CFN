@@ -1,0 +1,13 @@
+{
+  "cfn_node_url": "http://nispatil-m-qlpj.local:9002",
+  "workspace_id": "89cd3fd1-2f0a-4934-bffb-6d2330dc2154",
+  "mas_id": "05f1a04d-2d80-49d9-a40d-61d384892627",
+  "agent_id": "claude-code",
+  "read_enabled": true,
+  "write_enabled": false,
+  "query_timeout": 60,
+  "write_timeout": 60,
+  "min_query_length": 10,
+  "max_text_bytes": 8192,
+  "max_tool_bytes": 4096
+}

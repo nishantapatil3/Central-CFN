@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "cfn-memory": {
+      "command": "/home/ubuntu/cfn-claude-code/mcp-server/run_server.sh"
+    }
+  }
+}
