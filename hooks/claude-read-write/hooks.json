@@ -1,5 +1,5 @@
 {
-  "description": "CFN (Central Fusion Node) Integration - Bidirectional knowledge graph sync",
+  "description": "CFN (Cognitive Fabric Node) Integration - Bidirectional knowledge graph sync",
   "hooks": {
     "UserPromptSubmit": [
       {

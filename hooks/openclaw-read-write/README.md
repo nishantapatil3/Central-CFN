@@ -1,6 +1,6 @@
 # CFN Enhanced Capture Plugin
 
-This plugin provides bidirectional integration with CFN (Cognition Fabric Node):
+This plugin provides bidirectional integration with CFN (Cognitive Fabric Node):
 
 ## Features
 

@@ -1,6 +1,6 @@
 # CFN Memory MCP Server
 
-This MCP server exposes your CFN (Collaborative Function Network) shared-memories as a tool that Claude Code can call directly.
+This MCP server exposes your CFN (Cognitive Fabric Node) shared-memories as a tool that Claude Code can call directly.
 
 ## What This Does
 

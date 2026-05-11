@@ -1,6 +1,6 @@
 # CFN Integration for Claude Code
 
-Bidirectional CFN (Central Fusion Node) integration for Claude Code - queries shared memory before agent runs and writes conversations back after completion.
+Bidirectional CFN (Cognitive Fabric Node) integration for Claude Code - queries shared memory before agent runs and writes conversations back after completion.
 
 ## Features
 

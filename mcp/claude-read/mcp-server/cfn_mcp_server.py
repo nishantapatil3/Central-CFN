@@ -149,7 +149,7 @@ async def list_tools() -> list[Tool]:
         Tool(
             name="query_cfn_memory",
             description=(
-                "Query the Central CFN (Collaborative Function Network) shared memory system. "
+                "Query the Central CFN (Cognitive Fabric Node) shared memory system. "
                 "Use this to retrieve context about past incidents, project information, "
                 "decisions, conversations, or any information that may have been stored by other agents. "
                 "Particularly useful for questions about recent events, project history, or incident details."

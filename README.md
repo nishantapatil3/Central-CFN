@@ -1,6 +1,6 @@
 # Central-CFN
 
-Central repository for CFN (Claude Function Network) hooks and MCP servers.
+Central repository for CFN (Cognitive Fabric Node) hooks and MCP servers.
 
 ## Structure
 
