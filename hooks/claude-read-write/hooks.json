@@ -1,5 +1,5 @@
 {
-  "description": "CFN (Cognitive Fabric Node) Integration - Bidirectional knowledge graph sync",
+  "description": "Uses Claude Code hooks to read from and write to central CFN (Cognitive Fabric Node) shared memory",
   "hooks": {
     "UserPromptSubmit": [
       {

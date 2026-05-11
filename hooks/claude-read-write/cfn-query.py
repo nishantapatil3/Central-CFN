@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-CFN Query Hook (Claude Code - UserPromptSubmit)
+CFN Read Hook — Uses Claude Code's UserPromptSubmit hook to read from central CFN shared memory.
 
-Queries CFN's shared-memories before the agent runs and injects relevant
-context into the system prompt.
+Queries the central CFN shared memory before the agent runs and injects
+relevant context into the system prompt.
 
 Hook input (stdin JSON from Claude Code):
 {
@@ -68,7 +68,7 @@ def load_config() -> dict[str, Any]:
 
 
 def query_cfn(config: dict[str, Any], intent: str) -> str | None:
-    """Query CFN shared-memories for relevant context."""
+    """Read from central CFN shared memory for relevant context."""
     url = f"{config['cfn_node_url']}/api/workspaces/{config['workspace_id']}/multi-agentic-systems/{config['mas_id']}/shared-memories/query"
 
     payload = {

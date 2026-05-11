@@ -15,10 +15,10 @@ Central repository for CFN (Cognitive Fabric Node) hooks and MCP servers.
 
 ## Hooks
 
-- **claude-read-write** — Hook for querying and writing CFN data via Claude Code.
-- **openclaw-read-write** — Hook for reading and writing via OpenClaw.
+- **claude-read-write** — Uses Claude Code hooks to read from and write to central CFN shared memory.
+- **openclaw-read-write** — Uses OpenClaw plugin hooks to read from and write to central CFN shared memory.
 
 ## MCP Servers
 
-- **claude-read** — MCP server for reading CFN data.
-- **openclaw-read** — MCP server for reading OpenClaw data.
+- **claude-read** — Uses MCP to read from central CFN shared memory.
+- **openclaw-read** — Uses MCP to read from central CFN shared memory via OpenClaw.

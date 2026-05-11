@@ -1,18 +1,18 @@
 # CFN Integration for Claude Code
 
-Bidirectional CFN (Cognitive Fabric Node) integration for Claude Code - queries shared memory before agent runs and writes conversations back after completion.
+Uses Claude Code hooks to read from and write to central CFN (Cognitive Fabric Node) shared memory. Queries shared memory before agent runs and writes conversations back after completion.
 
 ## Features
 
 ### Read (Query Before Agent Runs)
 - **Hook**: `UserPromptSubmit`
-- Queries CFN's shared-memories before the agent processes your message
+- Uses Claude Code's UserPromptSubmit hook to read from central CFN shared memory
 - Injects relevant context from past conversations into the system prompt
 - Agent can reference information from other sessions/agents
 
 ### Write (Capture After Completion)
 - **Hook**: `Stop`
-- Writes completed conversation turns to CFN after agent finishes
+- Uses Claude Code's Stop hook to write conversation turns to central CFN shared memory
 - Captures: user message, thinking, tool calls, and response
 - Makes your conversations searchable and available to other agents
 

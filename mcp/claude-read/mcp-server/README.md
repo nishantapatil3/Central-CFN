@@ -1,11 +1,11 @@
 # CFN Memory MCP Server
 
-This MCP server exposes your CFN (Cognitive Fabric Node) shared-memories as a tool that Claude Code can call directly.
+Uses MCP (Model Context Protocol) to read from central CFN (Cognitive Fabric Node) shared memory. Exposes the shared memory as an MCP tool that Claude Code can call directly.
 
 ## What This Does
 
-- **Wraps your existing CFN API** - No changes needed to the CFN server
-- **Exposes `query_cfn_memory` tool** - Claude can proactively query CFN when needed
+- **Uses MCP to read from central CFN shared memory** - No changes needed to the CFN server
+- **Exposes `query_cfn_memory` tool** - Claude can proactively read from central CFN shared memory
 - **More transparent** - Shows up as a visible tool call in the conversation
 - **Better than hooks** - Works reliably (unlike the `prependContext` hook bug)
 

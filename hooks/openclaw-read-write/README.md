@@ -1,11 +1,11 @@
-# CFN Enhanced Capture Plugin
+# CFN OpenClaw Plugin
 
-This plugin provides bidirectional integration with CFN (Cognitive Fabric Node):
+Uses OpenClaw plugin hooks to read from and write to central CFN (Cognitive Fabric Node) shared memory.
 
 ## Features
 
 ### 1. **Write to CFN** (Capture)
-Captures comprehensive OpenClaw conversation data and sends it to CFN for knowledge extraction:
+Uses OpenClaw hooks to capture conversation data and write it to central CFN shared memory:
 - Full LLM prompts and responses
 - Tool call inputs and outputs
 - Subagent conversations
@@ -13,15 +13,15 @@ Captures comprehensive OpenClaw conversation data and sends it to CFN for knowle
 - Usage statistics and metadata
 
 ### 2. **Read from CFN** (Enhancement)
-Queries CFN before agent replies to inject relevant context from past conversations:
-- Automatically extracts intent from agent replies
-- Queries CFN's knowledge graph for relevant context
+Uses OpenClaw hooks to read from central CFN shared memory and inject relevant context:
+- Automatically extracts intent from the user's message
+- Queries central CFN shared memory for relevant context
 - Injects context as a "Relevant Context from Past Conversations" section
 - Configurable via environment variables
 
 ## Files
 
-- `cfn-enhanced-capture.ts` - Enhanced plugin with bidirectional CFN integration (write + read)
+- `cfn-enhanced-capture.ts` - Plugin using OpenClaw hooks to read from and write to central CFN shared memory
 - `openclaw.plugin.json` - Plugin manifest
 - `README.md` - This documentation
 
@@ -70,7 +70,7 @@ Agent processes → tool calls → Capture tool calls
                                 ↓
 Agent reply → llm_output hook → Capture response + usage
                                 ↓
-Agent end → agent_end hook → Send accumulated data to CFN
+Agent end → agent_end hook → Write accumulated data to central CFN shared memory
 ```
 
 **CFN Write Endpoint:**
@@ -85,7 +85,7 @@ Agent generates reply → before_agent_reply hook
                                 ↓
                         Extract intent from reply
                                 ↓
-                        Query CFN for relevant context
+                        Read from central CFN shared memory
                                 ↓
                         Inject context into reply
                                 ↓
@@ -143,7 +143,7 @@ end of Q2. Previous discussions indicated JWT tokens should be used with a
 - `subagent_ended` - Capture subagent conversations
 
 ### Read Hooks
-- `before_agent_reply` - Query CFN and inject context before sending reply to user
+- `before_agent_reply` - Read from central CFN shared memory and inject context before sending reply to user
 
 ## Data Format
 
@@ -191,14 +191,14 @@ The plugin uses the `openclaw-conversation-v1` schema:
 - Check console logs for errors
 
 ### CFN connection issues
-- Verify `CFN_NODE_URL` is correct and CFN is running
-- Check network connectivity to CFN
+- Verify `CFN_NODE_URL` is correct and the central CFN node is running
+- Check network connectivity to the CFN node
 - Look for connection errors in plugin logs: `[CFN-ENHANCED]`
 
 ### No context enhancement
 - Set `ENABLE_CFN_READ=true`
 - Ensure replies are longer than `CFN_READ_MIN_REPLY_LENGTH`
-- Check CFN has data in the knowledge graph
+- Check central CFN shared memory has data in the knowledge graph
 - Verify the query endpoint is working: `curl -X POST http://..../query`
 
 ### Logs

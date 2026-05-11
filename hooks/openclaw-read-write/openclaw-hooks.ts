@@ -1,17 +1,17 @@
 import type { OpenClawPluginApi } from "openclaw/plugin-sdk/plugin-entry";
 
 /**
- * CFN Enhanced Capture Plugin with Read Enhancement
+ * CFN Read + Write Plugin — Uses OpenClaw plugin hooks to read from and write to central CFN shared memory.
  *
- * WRITES: Captures comprehensive OpenClaw data and sends to CFN for knowledge extraction.
- * READS: Queries CFN before agent replies to inject relevant context from past conversations.
+ * WRITES: Captures OpenClaw conversation data and writes it to central CFN shared memory.
+ * READS: Queries central CFN shared memory before agent starts to inject relevant context.
  *
- * Uses openclaw-conversation-v1 format with multiple hooks:
+ * Uses openclaw-conversation-v1 format with multiple OpenClaw hooks:
  * - llm_input/output: Full prompts and responses
  * - tool calls: Complete tool usage with inputs/outputs
  * - subagents: Multi-agent collaboration
  * - messages: Inter-agent communication
- * - before_agent_reply: Query CFN and enhance response with relevant context
+ * - before_agent_start: Read from central CFN shared memory and inject context
  */
 
 // Load configuration from JSON file if environment variables not set
@@ -84,7 +84,7 @@ const pendingToolCalls = new Map<string, {
 }>();
 
 // ============================================================================
-// WRITE TO CFN - Send captured conversations
+// WRITE TO CFN — Send captured conversations to central CFN shared memory
 // ============================================================================
 
 async function sendToCFN(sessionData: any) {
@@ -177,7 +177,7 @@ async function sendToCFN(sessionData: any) {
 }
 
 // ============================================================================
-// READ FROM CFN - Query for relevant context
+// READ FROM CFN — Query central CFN shared memory for relevant context
 // ============================================================================
 
 async function queryContextFromCFN(intent: string): Promise<string | null> {
@@ -321,7 +321,7 @@ export function register(api: OpenClawPluginApi) {
   testConnection().catch(err => log(`Connection test error: ${err}`));
 
   // ============================================================================
-  // BEFORE AGENT START - Inject CFN context into system prompt
+  // BEFORE AGENT START — Read from central CFN shared memory and inject into system prompt
   // ============================================================================
   api.on("before_agent_start", async (event, ctx) => {
     if (!ENABLE_CFN_READ) {
@@ -475,7 +475,7 @@ export function register(api: OpenClawPluginApi) {
   });
 
   // ============================================================================
-  // AGENT END - Send accumulated data to CFN
+  // AGENT END — Write accumulated data to central CFN shared memory
   // ============================================================================
   api.on("agent_end", async (event, ctx) => {
     const sessionKey = ctx.sessionKey || "main";
@@ -698,7 +698,7 @@ export function register(api: OpenClawPluginApi) {
     }
   });
 
-  log("✅ CFN Enhanced Capture Plugin Ready with WRITE + READ capabilities");
-  log("   - Writes: All conversation data to CFN");
-  log("   - Reads: Queries CFN before agent replies to inject relevant context");
+  log("✅ CFN Plugin Ready — Uses OpenClaw hooks to read from and write to central CFN shared memory");
+  log("   - Writes: Conversation data to central CFN shared memory via OpenClaw hooks");
+  log("   - Reads: Queries central CFN shared memory before agent starts to inject relevant context");
 }

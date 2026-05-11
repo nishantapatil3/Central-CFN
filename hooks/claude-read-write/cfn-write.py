@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-CFN Write Hook (Claude Code - Stop)
+CFN Write Hook — Uses Claude Code's Stop hook to write to central CFN shared memory.
 
-Writes conversation turns to CFN's shared-memories after agent completion.
+Writes conversation turns to the central CFN shared memory after agent completion.
 
 Hook input (stdin JSON from Claude Code):
 {
@@ -189,7 +189,7 @@ def extract_last_turn(entries: list[dict[str, Any]], config: dict[str, Any]) -> 
 
 
 def write_to_cfn(config: dict[str, Any], turn: dict[str, Any], session_id: str, cwd: str | None) -> bool:
-    """Write conversation turn to CFN."""
+    """Write conversation turn to central CFN shared memory."""
     url = f"{config['cfn_node_url']}/api/workspaces/{config['workspace_id']}/multi-agentic-systems/{config['mas_id']}/shared-memories"
 
     # Build payload

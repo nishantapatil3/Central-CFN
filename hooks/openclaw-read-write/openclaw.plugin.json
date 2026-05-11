@@ -1,8 +1,8 @@
 {
   "id": "cfn-enhanced-capture",
-  "name": "CFN Enhanced Capture (Read + Write)",
+  "name": "CFN OpenClaw Plugin (Read + Write)",
   "version": "2.1.0",
-  "description": "Bidirectional CFN integration: writes conversations to CFN and reads context to enhance agent replies",
+  "description": "Uses OpenClaw hooks to read from and write to central CFN shared memory",
   "entry": "./cfn-enhanced-capture.ts",
   "openclaw": {
     "minVersion": "2024.1.0"
@@ -12,7 +12,7 @@
     "properties": {
       "cfnNodeUrl": {
         "type": "string",
-        "description": "CFN node URL",
+        "description": "Central CFN node URL",
         "default": "http://nispatil-m-qlpj.local:9002"
       },
       "workspaceId": {
@@ -25,12 +25,12 @@
       },
       "enableCfnRead": {
         "type": "boolean",
-        "description": "Enable CFN read enhancement",
+        "description": "Enable reading from central CFN shared memory",
         "default": true
       },
       "cfnReadMinReplyLength": {
         "type": "number",
-        "description": "Minimum reply length to trigger CFN enhancement",
+        "description": "Minimum query length to trigger reading from central CFN shared memory",
         "default": 100
       }
     },

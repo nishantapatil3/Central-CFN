@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-CFN MCP Server - Exposes CFN shared-memories as MCP tools for Claude Code
+CFN MCP Server — Uses MCP (Model Context Protocol) to read from central CFN shared memory.
 
-This MCP server wraps the existing CFN API without requiring any changes to CFN.
-Claude can proactively query CFN memory when it needs context.
+Exposes the central CFN shared memory as MCP tools so Claude Code can
+proactively query it for relevant context.
 """
 
 import json
@@ -56,7 +56,7 @@ def load_config() -> dict[str, Any]:
 
 def query_cfn(config: dict[str, Any], intent: str) -> dict[str, Any]:
     """
-    Query CFN shared-memories for relevant context.
+    Read from central CFN shared memory for relevant context.
 
     Returns:
         {"success": True, "message": "context"} or {"success": False, "error": "reason"}
@@ -149,9 +149,9 @@ async def list_tools() -> list[Tool]:
         Tool(
             name="query_cfn_memory",
             description=(
-                "Query the Central CFN (Cognitive Fabric Node) shared memory system. "
+                "Read from the central CFN (Cognitive Fabric Node) shared memory. "
                 "Use this to retrieve context about past incidents, project information, "
-                "decisions, conversations, or any information that may have been stored by other agents. "
+                "decisions, conversations, or any information stored in the shared memory by other agents. "
                 "Particularly useful for questions about recent events, project history, or incident details."
             ),
             inputSchema={
